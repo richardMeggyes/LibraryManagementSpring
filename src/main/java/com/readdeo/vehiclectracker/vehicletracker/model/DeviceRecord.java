@@ -1,27 +1,22 @@
 package com.readdeo.vehiclectracker.vehicletracker.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Builder
 @Entity
 @Table(name = "device_records", schema = "public")
+@AllArgsConstructor
+@NoArgsConstructor
 public class DeviceRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
-
-    public Device getDevice() {
-        return device;
-    }
-
-    public void setDevice(Device device) {
-        this.device = device;
-    }
-
+    private long id;
     @ManyToOne(cascade = CascadeType.ALL)
     private Device device;
     @Column(name = "latitude")
@@ -35,20 +30,17 @@ public class DeviceRecord {
 
 //    localDateTime
 
-    public DeviceRecord(){
 
-    }
+    public DeviceRecord(Device device, double latitude, double longitude, long timestamp, double accuracy){
 
-    public DeviceRecord(double latitude, double longitude, long timestamp, double accuracy, Device device){
-
+        this.device = device;
         this.latitude = latitude;
         this.longitude = longitude;
         this.timestamp = timestamp;
         this.accuracy = accuracy;
-        this.device = device;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -60,7 +52,7 @@ public class DeviceRecord {
         return longitude;
     }
 
-    public int getDeviceId() {
+    public long getDeviceId() {
         return device.getId();
     }
 
@@ -70,6 +62,14 @@ public class DeviceRecord {
 
     public void setAccuracy(double accuracy) {
         this.accuracy = accuracy;
+    }
+
+    public Device getDevice() {
+        return device;
+    }
+
+    public void setDevice(Device device) {
+        this.device = device;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
-    private int roleId;
+    private long roleId;
 
     @Column(name = "role")
     private String role;
@@ -17,7 +17,7 @@ public class Role {
     public Role() {
     }
 
-    public int getRoleId() {
+    public long getRoleId() {
         return roleId;
     }
 

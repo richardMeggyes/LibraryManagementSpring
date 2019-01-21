@@ -2,8 +2,8 @@ package com.readdeo.vehiclectracker.vehicletracker.controller;
 
 import com.readdeo.vehiclectracker.vehicletracker.model.CustomUserDetails;
 import com.readdeo.vehiclectracker.vehicletracker.model.Device;
-import com.readdeo.vehiclectracker.vehicletracker.model.DeviceRecord;
-import com.readdeo.vehiclectracker.vehicletracker.repository.DeviceRecordsRepository;
+//import com.readdeo.vehiclectracker.vehicletracker.model.DeviceRecord;
+//import com.readdeo.vehiclectracker.vehicletracker.repository.DeviceRecordsRepository;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +21,8 @@ import java.util.Set;
 @Controller
 public class DeviceController {
 
-    @Autowired
-    private DeviceRecordsRepository deviceRecordsRepository;
+//    @Autowired
+//    private DeviceRecordsRepository deviceRecordsRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(DeviceController.class);
 
@@ -34,14 +34,14 @@ public class DeviceController {
         CustomUserDetails cud = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Set<Device> devices = cud.getDevices();
 
-        HashMap<Device, DeviceRecord> deviceHashmap = new HashMap<>();
-        for (Device device : devices){
-            DeviceRecord lastPosition = deviceRecordsRepository.findTopByDevice(device);
-            deviceHashmap.put(device, lastPosition);
-        }
+//        HashMap<Device, DeviceRecord> deviceHashmap = new HashMap<>();
+//        for (Device device : devices){
+//            DeviceRecord lastPosition = deviceRecordsRepository.findTopByDevice(device);
+//            deviceHashmap.put(device, lastPosition);
+//        }
 
-        model.addAttribute("deviceHashmap", deviceHashmap);
-        logger.info("DeviceList page:"+deviceHashmap.toString());
+//        model.addAttribute("deviceHashmap", deviceHashmap);
+//        logger.info("DeviceList page:"+deviceHashmap.toString());
 
         return "device-list";
     }

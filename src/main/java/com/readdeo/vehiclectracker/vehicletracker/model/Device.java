@@ -1,17 +1,22 @@
 package com.readdeo.vehiclectracker.vehicletracker.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Id;
 
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "device", schema = "public")
 public class Device {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -19,8 +24,8 @@ public class Device {
     @Column(name = "token", unique = true)
     private String token;
 
-    public Device() {
-    }
+    @Column(name = "userDetails")
+    public CustomUserDetails user;
 
     @Override
     public String toString() {
@@ -31,11 +36,7 @@ public class Device {
                 '}';
     }
 
-    public Device(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 

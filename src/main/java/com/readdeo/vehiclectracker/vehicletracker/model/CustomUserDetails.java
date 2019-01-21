@@ -53,8 +53,8 @@ public class CustomUserDetails extends User implements UserDetails {
         return true;
     }
 
-    @Override
-    public Set<Device> getDevices(){
-        return super.getDevices();
-    }
+//    @Override
+//    public Set<Device> getDevices(){
+//        return super.getDevices();
+//    }
 }
