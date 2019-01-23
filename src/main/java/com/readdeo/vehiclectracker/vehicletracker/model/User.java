@@ -37,6 +37,13 @@ public class User {
 //        return devices;
 //    }
 
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private Set<Wishlist> wishlist;
+
+//    public Set<Wishlist> getWishlist() {
+//        return wishlist;
+//    }
+
     public User() {
     }
 

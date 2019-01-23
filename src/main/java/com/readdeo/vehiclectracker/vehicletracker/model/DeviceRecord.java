@@ -52,9 +52,9 @@ public class DeviceRecord {
         return longitude;
     }
 
-    public long getDeviceId() {
-        return device.getId();
-    }
+//    public long getDeviceId() {
+//        return device.getId();
+//    }
 
     public double getAccuracy() {
         return accuracy;
