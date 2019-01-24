@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/wishlist")
 public class WishlistController {
 
@@ -22,7 +23,7 @@ public class WishlistController {
     @Autowired
     WishlistRepository wrep;
 
-    @CrossOrigin
+
     @PostMapping("/onwishlist")
     public JSONObject onwishlist(@RequestParam("OLID") String olId) {
         User user = userRepository.findByid(0L);
@@ -76,6 +77,20 @@ public class WishlistController {
         } else {
             obj.put("success", false);
         }
+        return obj;
+    }
+
+    @PostMapping("/getwishlist")
+    public JSONObject getwishlist() {
+        User user = userRepository.findByid(0L);
+        Set<Wishlist> wishlistSet = wrep.findAllByuser(user);
+        JSONObject obj = new JSONObject();
+
+        for (Wishlist book : wishlistSet){
+        obj.put("book_" + book.getId(), book.getOlId());
+
+        }
+        System.out.println(obj.toString());
         return obj;
     }
 }
