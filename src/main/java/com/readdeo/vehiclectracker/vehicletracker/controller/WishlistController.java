@@ -44,18 +44,19 @@ public class WishlistController {
     @PostMapping("/add")
     public JSONObject greeting(@RequestParam("OLID") String olId) {
         User user = userRepository.findByid(0L);
-        Set<Wishlist> wishlist = wrep.findAllByuser(user);
-        System.out.println("olId: " + olId);
 
-        Wishlist newWish = new Wishlist();
-        newWish.setUser(user);
-        newWish.setOlId(olId);
-
-        wrep.save(newWish);
-
-
+        Wishlist book = wrep.findByUserAndOlId(user, olId);
         JSONObject obj = new JSONObject();
-        obj.put("asd", "asd");
+        if (book == null) {
+            Wishlist newWish = new Wishlist();
+            newWish.setUser(user);
+            newWish.setOlId(olId);
+            wrep.save(newWish);
+            obj.put("success", true);
+        } else {
+            obj.put("success", false);
+            System.out.println("shit was already in db");
+        }
         return obj;
     }
 
